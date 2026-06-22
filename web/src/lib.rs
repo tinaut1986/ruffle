@@ -497,6 +497,15 @@ impl RuffleHandle {
         });
     }
 
+    /// Override the player frame rate dynamically.
+    /// Pass a number to force a specific FPS, or `null`/`undefined` to restore
+    /// the original movie-defined frame rate.
+    pub fn set_frame_rate(&self, new_rate: Option<f32>) {
+        self.with_core_mut(|core| {
+            core.set_frame_rate(new_rate.map(|r| r as f64));
+        });
+    }
+
     /// Returns the web AudioContext used by this player.
     /// Returns `None` if the audio backend does not use Web Audio.
     pub fn audio_context(&self) -> Option<web_sys::AudioContext> {

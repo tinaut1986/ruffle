@@ -189,4 +189,12 @@ export interface PlayerV1 {
      * @returns Any value returned by the callback.
      */
     callExternalInterface(name: string, ...args: unknown[]): unknown;
+
+    /**
+     * Override the player's frame rate dynamically.
+     *
+     * @param frameRate - A positive number (FPS) to force, or `null` to restore
+     * the original movie-defined frame rate.
+     */
+    setFrameRate(frameRate: number | null): void;
 }

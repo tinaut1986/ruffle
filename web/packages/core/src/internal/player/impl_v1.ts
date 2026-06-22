@@ -104,4 +104,8 @@ export class PlayerV1Impl implements PlayerV1 {
     callExternalInterface(name: string, ...args: unknown[]): unknown {
         return this.#inner.callExternalInterface(name, args);
     }
+
+    setFrameRate(frameRate: number | null): void {
+        this.#inner.setFrameRate(frameRate);
+    }
 }

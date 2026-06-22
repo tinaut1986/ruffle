@@ -1998,6 +1998,10 @@ export class InnerPlayer {
         this.instance?.set_trace_observer(observer);
     }
 
+    public setFrameRate(frameRate: number | null): void {
+        this.instance?.set_frame_rate(frameRate);
+    }
+
     /**
      * Get data included in any panic of this ruffle-player
      *

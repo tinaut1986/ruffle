@@ -2115,6 +2115,20 @@ impl Player {
         self.frame_rate
     }
 
+    /// Override the player's frame rate.
+    /// Pass `Some(fps)` to force a specific frame rate, or `None` to restore
+    /// the original movie-defined frame rate (clears the forced override).
+    pub fn set_frame_rate(&mut self, new_rate: Option<f64>) {
+        if let Some(rate) = new_rate {
+            self.frame_rate = rate;
+            self.forced_frame_rate = true;
+            self.audio.set_frame_rate(rate);
+        } else {
+            self.forced_frame_rate = false;
+            self.frame_rate = self.swf.frame_rate().into();
+        }
+    }
+
     pub fn renderer(&self) -> &dyn RenderBackend {
         &*self.renderer
     }
